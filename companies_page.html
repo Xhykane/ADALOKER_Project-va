@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daftar Perusahaan - ADAloker</title>
+    <link rel="stylesheet" href="/assets/css/companies_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/cari_lowongan.html" class="nav-logo">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/cari_lowongan.html" class="nav-link">Lowongan</a></li>
+                    <li><a href="/companies_page.html" class="nav-link active">Perusahaan</a></li>
+                </ul>
+            </nav>
+            <div class="nav-profile">
+                <a href="/profile_page.html" class="profile-button">
+                    <img src="/ADAloker_vercel/assets/images/profile_icon.png" alt="Profil" class="profile-icon" id="navProfileIconSeeker_companies">
+                    <span>Profil Saya</span>
+                </a>
+                <a href="#" class="logout-button-nav seeker-logout-trigger" id="logoutButtonSeeker_companies" title="Keluar">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="companies-main">
+        <section class="companies-hero-section">
+            <div class="container">
+                <h1>Temukan Perusahaan Impian Anda</h1>
+                <p>Jelajahi profil perusahaan terkemuka dan temukan budaya kerja yang cocok untuk Anda.</p>
+                <div class="company-search-box">
+                    <input type="text" id="companySearchInput" placeholder="Cari berdasarkan nama perusahaan atau industri...">
+                    <button id="companySearchButton"><i class="fas fa-search"></i> Cari</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="company-listings-section">
+            <div class="container">
+                <div class="filter-info-bar">
+                    <p>Menampilkan <span id="displayedCompanyCount">0</span> perusahaan</p>
+                    <select id="companySortBy">
+                        <option value="name-asc">Urutkan: Nama (A-Z)</option>
+                        <option value="name-desc">Urutkan: Nama (Z-A)</option>
+                        <option value="jobs-desc">Urutkan: Lowongan Terbanyak</option>
+                    </select>
+                </div>
+                <div class="company-listings-grid" id="companyListingsGrid">
+                    <p class="no-companies-message" id="noCompaniesMessage" style="display: none;">Tidak ada perusahaan yang sesuai.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker Kecil" class="footer-logo">
+                <p>ADAloker menghubungkan talenta dengan perusahaan impian.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="/cari_lowongan.html">Cari Lowongan</a></li>
+                    <li><a href="/companies_page.html">Daftar Perusahaan</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Hubungi</h4>
+                <p><i class="fas fa-envelope"></i> support@adaloker.com</p>
+                <div class="social-media">
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYearCompanies"></span> ADAloker. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/companies_script.js"></script>
+</body>
+</html>

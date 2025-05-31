@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dasbor Perusahaan - ADAloker</title>
+    <link rel="stylesheet" href="/assets/css/dashboard_company_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/dashboard_company.html" class="nav-logo">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/dashboard_company.html#postedJobsContent" class="nav-link active">Lowongan Saya</a></li>
+                    <li><a href="/dashboard_company.html#candidatesContent" class="nav-link">Kandidat</a></li>
+                    <li><a href="/dashboard_company.html#postNewJobContent" class="nav-link">Pasang Lowongan</a></li>
+                </ul>
+            </nav>
+            <div class="nav-profile">
+                <a href="#" class="profile-button" id="companyProfileNavButton">
+                    <img src="/ADAloker_vercel/assets/images/company_logo_sample1.png" alt="Logo Perusahaan" class="profile-icon" id="navCompanyLogo">
+                    <span id="navCompanyName">[Nama Perusahaan]</span>
+                </a>
+                 <a href="/index.html" class="logout-button-nav" id="dashboardLogoutButton" title="Keluar"><i class="fas fa-sign-out-alt"></i></a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="dashboard-main">
+        <div class="container">
+            <div class="dashboard-header">
+                <h1 id="welcomeCompanyName">Selamat Datang, [Nama Perusahaan]!</h1>
+                <p>Kelola lowongan kerja dan temukan talenta terbaik Anda di sini.</p>
+            </div>
+
+            <section class="quick-stats-section">
+                <div class="stat-card">
+                    <i class="fas fa-briefcase"></i>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalJobs">0</span>
+                        <span class="stat-label">Total Lowongan Aktif</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-users"></i>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalCandidates">0</span>
+                        <span class="stat-label">Total Pelamar Baru</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <i class="fas fa-eye"></i>
+                    <div class="stat-info">
+                        <span class="stat-value" id="statTotalViews">0</span>
+                        <span class="stat-label">Total Dilihat (Minggu Ini)</span>
+                    </div>
+                </div>
+                 <div class="stat-card main-action">
+                    <button class="btn btn-primary" id="addNewJobButtonFromStat"><i class="fas fa-plus-circle"></i> Pasang Lowongan Baru</button>
+                </div>
+            </section>
+
+            <section class="dashboard-content-section">
+                <div class="tabs-navigation-dashboard">
+                    <button class="tab-link-dashboard active" data-tab="postedJobsContent">
+                        <i class="fas fa-list-alt"></i> Lowongan Diposting (<span id="postedJobsCount">0</span>)
+                    </button>
+                    <button class="tab-link-dashboard" data-tab="candidatesContent">
+                        <i class="fas fa-user-friends"></i> Manajemen Kandidat
+                    </button>
+                    <button class="tab-link-dashboard" data-tab="postNewJobContent">
+                        <i class="fas fa-edit"></i> Pasang/Edit Lowongan
+                    </button>
+                    <button class="tab-link-dashboard" data-tab="companyProfileContent">
+                        <i class="fas fa-building"></i> Profil Perusahaan
+                    </button>
+                </div>
+
+                <div class="tab-content-wrapper-dashboard">
+                    <div id="postedJobsContent" class="tab-content-dashboard active">
+                        <h3>Daftar Lowongan Anda</h3>
+                        <div class="job-list-company" id="companyPostedJobsList">
+                            <p class="empty-state-dashboard">Anda belum memposting lowongan apapun.</p>
+                        </div>
+                    </div>
+
+                    <div id="candidatesContent" class="tab-content-dashboard">
+                        <h3>Daftar Kandidat</h3>
+                        <div class="candidate-filter">
+                            <label for="selectJobForCandidates">Pilih Lowongan:</label>
+                            <select id="selectJobForCandidates">
+                                <option value="">-- Pilih Lowongan --</option>
+                            </select>
+                        </div>
+                        <div class="candidate-list" id="candidateListForJob">
+                            <p class="empty-state-dashboard">Pilih lowongan untuk melihat daftar kandidat.</p>
+                        </div>
+                    </div>
+
+                    <div id="postNewJobContent" class="tab-content-dashboard">
+                        <h3 id="formJobEditorTitle">Pasang Lowongan Kerja Baru</h3>
+                        <form id="postJobForm" class="post-job-form">
+                            <input type="hidden" id="editJobId" value="">
+                            <div class="form-grid-company">
+                                <div class="input-group"><label for="jobTitle">Judul Posisi <span class="required">*</span></label><input type="text" id="jobTitle" required></div>
+                                <div class="input-group"><label for="jobLocation">Lokasi <span class="required">*</span></label><input type="text" id="jobLocation" placeholder="Contoh: Jakarta, Indonesia" required></div>
+                                <div class="input-group"><label for="jobTypeSelect">Jenis Pekerjaan <span class="required">*</span></label><select id="jobTypeSelect" required><option value="">Pilih Jenis</option><option value="WFO">WFO</option><option value="WFH">WFH</option><option value="Hybrid">Hybrid</option><option value="WFA">WFA</option></select></div>
+                                <div class="input-group"><label for="jobSalaryDisplay">Tampilan Gaji <span class="required">*</span></label><input type="text" id="jobSalaryDisplay" placeholder="Contoh: Rp 8 Juta - 12 Juta" required><small>Ini yang akan dilihat pelamar.</small></div>
+                                <div class="input-group full-width-grid"><label for="jobSalaryRangeInternal">Rentang Gaji Internal (format: min-max) <span class="required">*</span></label><input type="text" id="jobSalaryRangeInternal" placeholder="Contoh: 8000000-12000000" required><small>Gunakan angka saja. Contoh: 5000000-7000000.</small></div>
+                                <div class="input-group full-width-grid"><label for="jobDescription">Deskripsi Pekerjaan Lengkap <span class="required">*</span></label><textarea id="jobDescription" rows="8" required placeholder="Jelaskan tanggung jawab, kualifikasi, dll."></textarea></div>
+                            </div>
+                            <div class="form-actions-company">
+                                <button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Lowongan</button>
+                                <button type="button" class="btn btn-secondary" id="clearJobFormButton" style="display:none;"><i class="fas fa-eraser"></i> Bersihkan Form</button>
+                            </div>
+                            <div id="postJobMessage" class="form-message"></div>
+                        </form>
+                    </div>
+
+                    <div id="companyProfileContent" class="tab-content-dashboard">
+                        <h3>Profil Perusahaan Anda</h3>
+                        <div class="profile-preview-company">
+                            <div class="preview-banner"><img src="/ADAloker_vercel/assets/images/company_banner_sample1.jpg" alt="Preview Banner Perusahaan" id="previewCompanyBanner"></div>
+                            <div class="preview-logo-name"><img src="/ADAloker_vercel/assets/images/company_logo_sample1.png" alt="Preview Logo Perusahaan" id="previewCompanyLogo"><h4 id="previewCompanyName">[Nama Perusahaan]</h4></div>
+                            <p id="previewCompanyTagline" class="preview-tagline">[Tagline Perusahaan]</p>
+                        </div>
+                        <form id="companyProfileForm" class="post-job-form">
+                            <div class="form-grid-company">
+                                <div class="input-group"><label for="profileCompanyName">Nama Perusahaan <span class="required">*</span></label><input type="text" id="profileCompanyName" required></div>
+                                <div class="input-group"><label for="profileCompanyIndustry">Industri</label><input type="text" id="profileCompanyIndustry"></div>
+                                <div class="input-group"><label for="profileCompanyLocation">Lokasi Utama</label><input type="text" id="profileCompanyLocation"></div>
+                                <div class="input-group"><label for="profileCompanyTagline">Tagline Perusahaan</label><input type="text" id="profileCompanyTagline"></div>
+                                <div class="input-group full-width-grid"><label for="profileCompanyAbout">Tentang Perusahaan</label><textarea id="profileCompanyAbout" rows="6"></textarea></div>
+                                <div class="input-group file-input-group-company"><label for="uploadCompanyLogo">Unggah Logo (PNG, JPG - Max 1MB)</label><div class="custom-file-input-company"><input type="file" id="uploadCompanyLogo" accept="image/png, image/jpeg"><label for="uploadCompanyLogo" class="file-input-label-company"><i class="fas fa-image"></i><span id="logoFileName">Pilih File Logo</span></label></div><img id="logoPreview" src="#" alt="Logo Preview" class="image-preview-company"/><span class="error-message" id="logoError"></span></div>
+                                <div class="input-group file-input-group-company"><label for="uploadCompanyBanner">Unggah Banner (PNG, JPG - Max 2MB)</label><div class="custom-file-input-company"><input type="file" id="uploadCompanyBanner" accept="image/png, image/jpeg"><label for="uploadCompanyBanner" class="file-input-label-company"><i class="fas fa-image"></i><span id="bannerFileName">Pilih File Banner</span></label></div><img id="bannerPreview" src="#" alt="Banner Preview" class="image-preview-company banner-type-preview"/><span class="error-message" id="bannerError"></span></div>
+                                <div class="input-group full-width-grid"><label for="profileCompanyWebsite">Website Perusahaan</label><input type="url" id="profileCompanyWebsite" placeholder="https://www.perusahaananda.com"></div>
+                            </div>
+                            <div class="form-actions-company"><button type="submit" class="btn btn-primary"><i class="fas fa-save"></i> Simpan Profil</button></div>
+                            <div id="profileCompanyMessage" class="form-message"></div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-about"><img src="/ADAloker_vercel/assets/images/logo_adaloker.png" class="footer-logo" alt="Logo ADAloker"></div>
+            <div class="footer-links"><h4>Navigasi</h4><ul><li><a href="/dashboard_company.html#postedJobsContent">Lowongan Saya</a></li><li><a href="/dashboard_company.html#postNewJobContent">Pasang Lowongan</a></li></ul></div>
+            <div class="footer-contact"><h4>Hubungi</h4><p><i class="fas fa-envelope"></i> support@adaloker.com</p></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYearDashboard"></span> ADAloker. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <div id="deleteJobModal" class="modal">
+        <div class="modal-content-sm">
+            <span class="close-button-modal" data-modal-id="deleteJobModal">×</span>
+            <h4>Konfirmasi Hapus</h4>
+            <p>Apakah Anda yakin ingin menghapus lowongan "<strong id="jobNameToDelete"></strong>"?</p>
+            <div class="modal-actions">
+                <button class="btn btn-danger" id="confirmDeleteJobButton">Ya, Hapus</button>
+                <button class="btn btn-secondary cancel-delete-modal" data-modal-id="deleteJobModal">Batal</button>
+            </div>
+        </div>
+    </div>
+    <script src="/assets/js/dashboard_company_script.js"></script>
+</body>
+</html>

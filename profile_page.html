@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Saya - ADAloker</title>
+    <link rel="stylesheet" href="/assets/css/profile_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/cari_lowongan.html" class="nav-logo">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/cari_lowongan.html" class="nav-link">Lowongan</a></li>
+                    <li><a href="/companies_page.html" class="nav-link">Perusahaan</a></li>
+                </ul>
+            </nav>
+            <div class="nav-profile">
+                <a href="/profile_page.html" class="profile-button active">
+                    <img src="/ADAloker_vercel/assets/images/profile_icon.png" alt="Profil" class="profile-icon" id="navProfileIcon">
+                    <span>Profil Saya</span>
+                </a>
+                <a href="#" class="logout-button-nav seeker-logout-trigger" id="logoutButton_profile_nav" title="Keluar">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="profile-main">
+        <div class="container">
+            <div class="profile-layout">
+                <aside class="profile-sidebar">
+                    <div class="profile-picture-card">
+                        <img src="/ADAloker_vercel/assets/images/default_profile_picture.png" alt="Foto Profil" id="profilePagePicture" class="profile-page-img">
+                        <label for="uploadProfilePic" class="upload-pic-btn">
+                            <i class="fas fa-camera"></i> Ganti Foto
+                        </label>
+                        <input type="file" id="uploadProfilePic" accept="image/*" style="display: none;">
+                        <h3 id="profilePageName">[Nama Pengguna]</h3>
+                        <p id="profilePageEmail">[email@pengguna.com]</p>
+                    </div>
+                    <nav class="profile-nav-menu">
+                        <ul>
+                            <li><a href="#informasiPribadi" class="profile-nav-link active" data-section="informasiPribadi"><i class="fas fa-user-edit"></i> Informasi Pribadi</a></li>
+                            <li><a href="#pengalamanKerja" class="profile-nav-link" data-section="pengalamanKerja"><i class="fas fa-briefcase"></i> Pengalaman Kerja</a></li>
+                            <li><a href="#pendidikan" class="profile-nav-link" data-section="pendidikan"><i class="fas fa-graduation-cap"></i> Pendidikan</a></li>
+                            <li><a href="#keahlian" class="profile-nav-link" data-section="keahlian"><i class="fas fa-tools"></i> Keahlian</a></li>
+                            <li><a href="#dokumenSaya" class="profile-nav-link" data-section="dokumenSaya"><i class="fas fa-file-alt"></i> Dokumen Saya</a></li>
+                            <li><a href="#pengaturanAkun" class="profile-nav-link" data-section="pengaturanAkun"><i class="fas fa-cog"></i> Pengaturan Akun</a></li>
+                            <li><a href="#" id="logoutButtonSidebar" class="profile-nav-link logout seeker-logout-trigger"><i class="fas fa-sign-out-alt"></i> Keluar</a></li>
+                        </ul>
+                    </nav>
+                </aside>
+
+                <section class="profile-content">
+                    <div id="informasiPribadi" class="profile-section active">
+                        <div class="section-header">
+                            <h2>Informasi Pribadi</h2>
+                            <button class="btn-edit-section" data-section-to-edit="informasiPribadiForm"><i class="fas fa-edit"></i> Edit</button>
+                        </div>
+                        <div class="section-view-mode">
+                            <p><strong>Nama Lengkap:</strong> <span id="viewFullName"></span></p>
+                            <p><strong>Email:</strong> <span id="viewEmail"></span></p>
+                            <p><strong>Nomor Telepon:</strong> <span id="viewPhoneNumber"></span></p>
+                            <p><strong>Alamat:</strong> <span id="viewAddress"></span></p>
+                            <p><strong>Ringkasan Profil:</strong> <span id="viewProfileSummary"></span></p>
+                        </div>
+                        <form id="informasiPribadiForm" class="profile-form edit-mode" style="display: none;">
+                            <div class="input-group"><label for="editFullName">Nama Lengkap</label><input type="text" id="editFullName"></div>
+                            <div class="input-group"><label for="editEmail">Email (tidak dapat diubah)</label><input type="email" id="editEmail" readonly></div>
+                            <div class="input-group"><label for="editPhoneNumber">Nomor Telepon</label><input type="tel" id="editPhoneNumber"></div>
+                            <div class="input-group"><label for="editAddress">Alamat</label><textarea id="editAddress" rows="3"></textarea></div>
+                            <div class="input-group"><label for="editProfileSummary">Ringkasan Profil</label><textarea id="editProfileSummary" rows="4"></textarea></div>
+                            <div class="form-actions">
+                                <button type="submit" class="btn btn-save"><i class="fas fa-save"></i> Simpan Perubahan</button>
+                                <button type="button" class="btn btn-cancel-edit"><i class="fas fa-times"></i> Batal</button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div id="pengalamanKerja" class="profile-section">
+                        <div class="section-header"><h2>Pengalaman Kerja</h2><button class="btn-add-item" data-section-to-add="pengalamanKerjaForm"><i class="fas fa-plus-circle"></i> Tambah</button></div>
+                        <div id="pengalamanKerjaList" class="item-list"><p class="empty-state">Belum ada pengalaman.</p></div>
+                    </div>
+
+                    <div id="pendidikan" class="profile-section">
+                        <div class="section-header"><h2>Pendidikan</h2><button class="btn-add-item" data-section-to-add="pendidikanForm"><i class="fas fa-plus-circle"></i> Tambah</button></div>
+                         <div id="pendidikanList" class="item-list"><p class="empty-state">Belum ada pendidikan.</p></div>
+                    </div>
+
+                    <div id="keahlian" class="profile-section">
+                         <div class="section-header"><h2>Keahlian</h2><button class="btn-add-item" data-section-to-add="keahlianForm"><i class="fas fa-plus-circle"></i> Tambah</button></div>
+                        <div id="keahlianList" class="skills-list"><p class="empty-state-skills" style="display:block;">Belum ada keahlian.</p></div>
+                    </div>
+
+                    <div id="dokumenSaya" class="profile-section">
+                        <div class="section-header"><h2>Dokumen Saya</h2></div>
+                        <div class="document-list" id="documentUploadList">
+                        </div>
+                        <div class="input-group file-input-group" style="margin-top: 15px;">
+                             <label for="uploadNewDocument" class="file-input-label btn-add-item" style="width:auto; display:inline-flex; background-color:var(--accent-color); color:white; border:none;">
+                                <i class="fas fa-plus-circle"></i> Unggah Dokumen Baru
+                            </label>
+                            <input type="file" id="uploadNewDocument" accept=".pdf,.doc,.docx" style="display:none;">
+                        </div>
+                    </div>
+                    
+                    <div id="pengaturanAkun" class="profile-section">
+                        <div class="section-header"><h2>Pengaturan Akun</h2></div>
+                        <form class="profile-form" id="changePasswordForm">
+                            <div class="input-group"><label for="currentPassword">Password Saat Ini</label><input type="password" id="currentPassword"></div>
+                            <div class="input-group"><label for="newPassword">Password Baru</label><input type="password" id="newPassword"></div>
+                            <div class="input-group"><label for="confirmNewPassword">Konfirmasi Password Baru</label><input type="password" id="confirmNewPassword"></div>
+                            <div class="form-actions"><button type="submit" class="btn btn-save"><i class="fas fa-key"></i> Ubah Password</button></div>
+                        </form>
+                        <hr class="section-divider">
+                        <div class="delete-account-section">
+                            <h4>Hapus Akun</h4>
+                            <p>Tindakan ini tidak dapat diurungkan. Semua data Anda akan dihapus.</p>
+                            <button class="btn btn-danger" id="deleteAccountButton"><i class="fas fa-exclamation-triangle"></i> Hapus Akun Saya</button>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-about"><img src="/ADAloker_vercel/assets/images/logo_adaloker.png" class="footer-logo" alt="Logo ADAloker"></div>
+            <div class="footer-links"><h4>Navigasi</h4><ul><li><a href="/cari_lowongan.html">Lowongan</a></li><li><a href="/companies_page.html">Perusahaan</a></li></ul></div>
+            <div class="footer-contact"><h4>Hubungi</h4><p><i class="fas fa-envelope"></i> support@adaloker.com</p></div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYearProfile"></span> ADAloker. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/profile_script.js"></script>
+</body>
+</html>

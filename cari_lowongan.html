@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cari Lowongan - ADAloker</title>
+    <link rel="stylesheet" href="/assets/css/lowongan_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/cari_lowongan.html" class="nav-logo">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/cari_lowongan.html" class="nav-link active">Lowongan</a></li>
+                    <li><a href="/companies_page.html" class="nav-link">Perusahaan</a></li>
+                </ul>
+            </nav>
+            <div class="nav-profile">
+                <a href="/profile_page.html" class="profile-button">
+                    <img src="/ADAloker_vercel/assets/images/profile_icon.png" alt="Profil" class="profile-icon" id="navProfileIconSeeker">
+                    <span>Profil Saya</span>
+                </a>
+                <a href="#" class="logout-button-nav seeker-logout-trigger" id="logoutButtonSeeker" title="Keluar">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <section class="search-filter-section">
+            <div class="container">
+                <h2>Temukan Peluang Karir Terbaikmu</h2>
+                <div class="search-box">
+                    <input type="text" id="searchInput" placeholder="Cari berdasarkan nama pekerjaan, keahlian...">
+                    <button id="searchButton"><i class="fas fa-search"></i> Cari</button>
+                </div>
+                <div class="filter-bar">
+                    <div class="filter-group">
+                        <label for="filterCompany">Perusahaan:</label>
+                        <select id="filterCompany">
+                            <option value="">Semua Perusahaan</option>
+                            <option value="PT. Anta Kirana">PT. Anta Kirana</option>
+                            <option value="Tech Solutions Inc.">Tech Solutions Inc.</option>
+                            <option value="Creative Agency XYZ">Creative Agency XYZ</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterJobType">Jenis Pekerjaan:</label>
+                        <select id="filterJobType">
+                            <option value="">Semua Jenis</option>
+                            <option value="WFO">WFO (Work From Office)</option>
+                            <option value="WFH">WFH (Work From Home)</option>
+                            <option value="Hybrid">Hybrid</option>
+                            <option value="WFA">WFA (Work From Anywhere)</option>
+                        </select>
+                    </div>
+                    <div class="filter-group">
+                        <label for="filterSalary">Kisaran Gaji (IDR):</label>
+                        <select id="filterSalary">
+                            <option value="">Semua Gaji</option>
+                            <option value="0-5000000">0 - 5 Juta</option>
+                            <option value="5000001-10000000">5 Juta - 10 Juta</option>
+                            <option value="10000001-15000000">10 Juta - 15 Juta</option>
+                            <option value="15000001">> 15 Juta</option>
+                        </select>
+                    </div>
+                    <button id="resetFilterButton" class="btn-secondary">Reset Filter</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="job-listings-section">
+            <div class="container">
+                <h3 id="jobCount">Menampilkan <span id="displayedJobCount">0</span> Lowongan</h3>
+                <div class="job-listings-grid" id="jobListingsGrid">
+                    <p class="no-jobs-message" id="noJobsMessage" style="display: none;">Tidak ada lowongan yang sesuai dengan kriteria pencarian Anda.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-about">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker Kecil" class="footer-logo">
+                <p>ADAloker membantu Anda menemukan peluang karir terbaik dan menghubungkan perusahaan dengan talenta hebat.</p>
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi Cepat</h4>
+                <ul>
+                    <li><a href="/cari_lowongan.html">Cari Lowongan</a></li>
+                    <li><a href="/companies_page.html">Perusahaan</a></li>
+                    <li><a href="#">Tentang Kami</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Hubungi Kami</h4>
+                <p><i class="fas fa-envelope"></i> support@adaloker.com</p>
+                <p><i class="fas fa-phone"></i> +62 123 4567 890</p>
+                <div class="social-media">
+                    <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+                    <a href="#" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
+                    <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                    <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYear"></span> ADAloker. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <script src="/assets/js/lowongan_script.js"></script>
+</body>
+</html>

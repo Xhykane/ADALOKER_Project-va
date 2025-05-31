@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profil Perusahaan - ADAloker</title>
+    <link rel="stylesheet" href="/assets/css/company_detail_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/cari_lowongan.html" class="nav-logo"><img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker"></a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/cari_lowongan.html" class="nav-link">Lowongan</a></li>
+                    <li><a href="/companies_page.html" class="nav-link">Perusahaan</a></li>
+                </ul>
+            </nav>
+            <div class="nav-profile">
+                <a href="/profile_page.html" class="profile-button">
+                    <img src="/ADAloker_vercel/assets/images/profile_icon.png" alt="Profil" class="profile-icon" id="navProfileIconSeeker_compDetail">
+                    <span>Profil Saya</span>
+                </a>
+                <a href="#" class="logout-button-nav seeker-logout-trigger" id="logoutButtonSeeker_compDetail" title="Keluar">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+            <div class="hamburger"><span class="bar"></span><span class="bar"></span><span class="bar"></span></div>
+        </div>
+    </header>
+
+    <main class="company-detail-main">
+        <div id="companyDetailWrapper">
+            <section class="company-header-section" id="companyHeaderSection">
+                <div class="container header-content-placeholder"><p>Memuat profil perusahaan...</p></div>
+            </section>
+            <section class="company-content-section">
+                <div class="container">
+                    <div class="tabs-navigation">
+                        <button class="tab-link active" data-tab="aboutCompany">Tentang Perusahaan</button>
+                        <button class="tab-link" data-tab="activeJobs">Lowongan Aktif (<span id="activeJobsCount">0</span>)</button>
+                        <button class="tab-link" data-tab="companyCulture">Budaya Kerja</button>
+                    </div>
+                    <div class="tab-content-wrapper">
+                        <div id="aboutCompany" class="tab-content active"><p class="loading-tab-content">Memuat...</p></div>
+                        <div id="activeJobs" class="tab-content"><div class="job-listings-grid-company" id="companyActiveJobsGrid"><p class="loading-tab-content">Memuat...</p></div></div>
+                        <div id="companyCulture" class="tab-content"><p class="loading-tab-content">Memuat...</p></div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+            <div class="footer-about"><img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker Kecil" class="footer-logo"></div>
+            <div class="footer-links"><h4>Navigasi</h4><ul><li><a href="/cari_lowongan.html">Lowongan</a></li><li><a href="/companies_page.html">Perusahaan</a></li></ul></div>
+            <div class="footer-contact"><h4>Hubungi</h4><p><i class="fas fa-envelope"></i> support@adaloker.com</p></div>
+        </div>
+        <div class="footer-bottom"><p>© <span id="currentYearCompanyDetail"></span> ADAloker.</p></div>
+    </footer>
+    <script src="/assets/js/company_detail_script.js"></script>
+</body>
+</html>

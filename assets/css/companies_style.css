@@ -1,0 +1,308 @@
+/* Mengimpor variabel dan gaya dasar yang relevan */
+:root {
+    --primary-color: #0a2540;
+    --secondary-color: #007bff;
+    --accent-color: #17a2b8;
+    --text-color: #e0e0e0;
+    --background-color: #051a2e;
+    --card-bg: #0f2c4a;
+    --card-border: #2a4a6a;
+    --input-bg: #0f2c4a;
+    --input-border: #2a4a6a;
+    --font-family: 'Poppins', sans-serif;
+    --hover-glow: 0 0 15px rgba(0, 123, 255, 0.5);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+.container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 15px; }
+
+/* Navbar Styling (Sama seperti sebelumnya, bisa di-refactor) */
+.navbar { background-color: var(--primary-color); padding: 1rem 0; position: sticky; top: 0; z-index: 1000; box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+.nav-container { display: flex; justify-content: space-between; align-items: center; }
+.nav-logo img { height: 40px; display: block; }
+.nav-menu { display: flex; list-style: none; align-items: center; }
+.nav-menu li { margin-left: 25px; }
+.nav-link { text-decoration: none; color: var(--text-color); font-weight: 500; padding: 8px 0; position: relative; transition: color 0.3s ease; }
+.nav-link::after { content: ''; position: absolute; width: 0; height: 2px; bottom: 0; left: 0; background-color: var(--secondary-color); transition: width 0.3s ease; }
+.nav-link:hover, .nav-link.active { color: var(--secondary-color); }
+.nav-link:hover::after, .nav-link.active::after { width: 100%; }
+.nav-profile { display: flex; align-items: center; }
+.profile-button { display: flex; align-items: center; text-decoration: none; color: var(--text-color); font-weight: 500; padding: 8px 12px; border-radius: 20px; background-color: rgba(255,255,255,0.1); transition: background-color 0.3s ease; }
+.profile-button:hover { background-color: rgba(0, 123, 255, 0.3); }
+.profile-icon { width: 24px; height: 24px; border-radius: 50%; margin-right: 8px; object-fit: cover; }
+.hamburger { display: none; cursor: pointer; }
+.hamburger .bar { display: block; width: 25px; height: 3px; margin: 5px auto; transition: all 0.3s ease-in-out; background-color: var(--text-color); }
+
+
+/* Companies Hero Section */
+.companies-hero-section {
+    background: linear-gradient(rgba(10, 37, 64, 0.85), rgba(5, 26, 46, 0.95)), url('https://via.placeholder.com/1500x400.png?text=Diverse+Workplaces') no-repeat center center/cover; /* Ganti dengan gambar latar yang relevan */
+    padding: 60px 0;
+    text-align: center;
+    color: #fff;
+}
+
+.companies-hero-section h1 {
+    font-size: 2.8rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.companies-hero-section p {
+    font-size: 1.1rem;
+    margin-bottom: 30px;
+    max-width: 700px;
+    margin-left: auto;
+    margin-right: auto;
+    opacity: 0.9;
+}
+
+.company-search-box {
+    display: flex;
+    gap: 10px;
+    max-width: 600px;
+    margin: 0 auto;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px;
+    border-radius: 8px;
+}
+
+.company-search-box input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 1rem;
+}
+
+.company-search-box input[type="text"]:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: var(--hover-glow);
+}
+
+.company-search-box button {
+    padding: 12px 20px;
+    background-color: var(--secondary-color);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+.company-search-box button:hover {
+    background-color: #0069d9;
+}
+
+
+/* Company Listings Section */
+.company-listings-section {
+    padding: 40px 0;
+}
+
+.filter-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+    padding: 10px;
+    background-color: rgba(var(--card-bg-rgb, 15, 44, 74), 0.5); /* card-bg dengan alpha */
+    border-radius: 8px;
+}
+
+.filter-info-bar p {
+    font-size: 1rem;
+    font-weight: 500;
+}
+.filter-info-bar p span {
+    color: var(--secondary-color);
+    font-weight: 600;
+}
+
+.filter-info-bar select {
+    padding: 8px 10px;
+    border: 1px solid var(--input-border);
+    border-radius: 6px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9rem;
+}
+.filter-info-bar select:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+}
+
+
+.company-listings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); /* Responsif, auto-fill akan mengisi sebanyak mungkin */
+    gap: 25px;
+}
+
+.company-card {
+    background-color: var(--card-bg);
+    border: 1px solid var(--card-border);
+    border-radius: 10px;
+    overflow: hidden; /* Agar banner tidak keluar dari border-radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+}
+
+.company-card:hover {
+    transform: translateY(-8px);
+    box-shadow: var(--hover-glow), 0 10px 20px rgba(0,0,0,0.25);
+}
+
+.company-banner {
+    width: 100%;
+    height: 120px; /* Tinggi banner */
+    overflow: hidden; /* Pastikan gambar banner tidak meluber */
+}
+.company-banner img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Gambar akan mengisi area tanpa distorsi */
+}
+
+.company-card-content {
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1; /* Agar konten mengisi ruang kartu */
+}
+
+.company-logo-name {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+}
+.company-logo-name img.company-logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    margin-right: 15px;
+    object-fit: contain;
+    background-color: #fff;
+    padding: 5px;
+    border: 1px solid var(--card-border);
+}
+.company-logo-name h3 {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #fff;
+    margin: 0;
+}
+
+.company-info p {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    opacity: 0.8;
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+.company-info p i {
+    width: 18px;
+    margin-right: 10px;
+    color: var(--accent-color);
+}
+
+.company-description-short {
+    font-size: 0.85rem;
+    color: var(--text-color);
+    opacity: 0.9;
+    margin-top: 10px;
+    margin-bottom: 15px;
+    line-height: 1.5;
+    flex-grow: 1;
+    /* Batasi jumlah baris */
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+}
+
+.company-jobs-link {
+    display: inline-block;
+    background-color: var(--secondary-color);
+    color: white;
+    padding: 8px 15px;
+    text-decoration: none;
+    border-radius: 6px;
+    text-align: center;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+    margin-top: auto; /* Dorong link ke bawah kartu */
+    align-self: flex-start;
+}
+.company-jobs-link:hover {
+    background-color: #0069d9;
+}
+
+.no-companies-message {
+    grid-column: 1 / -1;
+    text-align: center;
+    font-size: 1.1rem;
+    padding: 30px;
+    color: var(--text-color);
+}
+
+/* Footer Styling (Sama seperti sebelumnya) */
+.site-footer { background-color: var(--primary-color); color: var(--text-color); padding: 40px 0 0 0; border-top: 3px solid var(--secondary-color); }
+.footer-container { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 30px; margin-bottom: 30px; }
+.footer-logo { height: 35px; margin-bottom: 15px; }
+.footer-about, .footer-links, .footer-contact { flex: 1; min-width: 220px; }
+.footer-about p, .footer-links ul li a, .footer-contact p, .social-media a { opacity: 0.8; }
+.footer-links h4, .footer-contact h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 15px; color: #fff; }
+.footer-links ul { list-style: none; }
+.footer-links ul li a { text-decoration: none; color: var(--text-color); font-size: 0.9rem; margin-bottom: 10px; display: block; transition: color 0.3s ease, padding-left 0.3s ease; }
+.footer-links ul li a:hover { color: var(--secondary-color); padding-left: 5px; opacity: 1; }
+.footer-contact p { font-size: 0.9rem; margin-bottom: 10px; display: flex; align-items: center; }
+.footer-contact p i { margin-right: 10px; color: var(--accent-color); }
+.social-media { margin-top: 15px; }
+.social-media a { color: var(--text-color); font-size: 1.2rem; margin-right: 15px; transition: color 0.3s ease, transform 0.3s ease; }
+.social-media a:hover { color: var(--secondary-color); transform: scale(1.1); opacity: 1; }
+.footer-bottom { text-align: center; padding: 20px 0; border-top: 1px solid var(--card-border); font-size: 0.8rem; opacity: 0.7; }
+
+
+/* Responsiveness */
+@media (max-width: 768px) {
+    /* Navbar Mobile (Sama seperti sebelumnya) */
+    .nav-menu { position: fixed; left: -100%; top: 66px; flex-direction: column; background-color: var(--primary-color); width: 100%; text-align: center; transition: 0.3s; box-shadow: 0 10px 20px rgba(0,0,0,0.1); padding: 20px 0; }
+    .nav-menu.active { left: 0; }
+    .nav-menu li { margin: 15px 0; }
+    .hamburger { display: block; }
+    .hamburger.active .bar:nth-child(2) { opacity: 0; }
+    .hamburger.active .bar:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+    .hamburger.active .bar:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
+    .nav-profile span { display: none; }
+
+    .companies-hero-section h1 { font-size: 2.2rem; }
+    .companies-hero-section p { font-size: 1rem; }
+    .company-search-box { flex-direction: column; }
+    .company-search-box input[type="text"], .company-search-box button { width: 100%; }
+    .company-search-box button { margin-top: 10px; }
+
+    .filter-info-bar { flex-direction: column; align-items: flex-start; gap: 10px;}
+}
+
+@media (max-width: 480px) {
+    .company-listings-grid {
+        grid-template-columns: 1fr; /* 1 kolom di layar sangat kecil */
+    }
+}

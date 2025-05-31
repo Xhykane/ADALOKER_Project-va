@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Formulir Lamaran - ADAloker</title>
+    <link rel="stylesheet" href="/assets/css/formulir_style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="navbar">
+        <div class="container nav-container">
+            <a href="/cari_lowongan.html" class="nav-logo">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker">
+            </a>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="/cari_lowongan.html" class="nav-link">Lowongan</a></li>
+                    <li><a href="/companies_page.html" class="nav-link">Perusahaan</a></li>
+                </ul>
+            </nav>
+            <div class="nav-profile">
+                <a href="/profile_page.html" class="profile-button">
+                    <img src="/ADAloker_vercel/assets/images/profile_icon.png" alt="Profil" class="profile-icon" id="navProfileIconSeeker_form">
+                    <span>Profil Saya</span>
+                </a>
+                <a href="#" class="logout-button-nav seeker-logout-trigger" id="logoutButtonSeeker_form" title="Keluar">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </div>
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
+        </div>
+    </header>
+
+    <main class="application-form-main">
+        <div class="container">
+            <div class="form-container-wrapper">
+                <div class="form-header">
+                    <h1 id="formJobTitle">Formulir Lamaran untuk [Nama Pekerjaan]</h1>
+                    <p id="formCompanyName">di [Nama Perusahaan]</p>
+                </div>
+
+                <form id="applicationForm" class="application-form">
+                    <section class="form-section">
+                        <h2>Informasi Pribadi</h2>
+                        <div class="form-grid">
+                            <div class="input-group">
+                                <label for="fullName">Nama Lengkap <span class="required">*</span></label>
+                                <input type="text" id="fullName" name="fullName" placeholder="Masukkan nama lengkap Anda" required>
+                                <span class="error-message" id="fullNameError"></span>
+                            </div>
+                            <div class="input-group">
+                                <label for="email">Alamat Email <span class="required">*</span></label>
+                                <input type="email" id="email" name="email" placeholder="contoh@domain.com" required>
+                                <span class="error-message" id="emailError"></span>
+                            </div>
+                            <div class="input-group">
+                                <label for="phoneNumber">Nomor Telepon <span class="required">*</span></label>
+                                <input type="tel" id="phoneNumber" name="phoneNumber" placeholder="08123456789" required>
+                                <span class="error-message" id="phoneNumberError"></span>
+                            </div>
+                            <div class="input-group full-width-grid">
+                                <label for="address">Alamat Saat Ini</label>
+                                <textarea id="address" name="address" rows="3" placeholder="Masukkan alamat lengkap Anda"></textarea>
+                            </div>
+                        </div>
+                    </section>
+
+                    <section class="form-section">
+                        <h2>Dokumen Pendukung</h2>
+                        <div class="input-group file-input-group">
+                            <label for="resume">Unggah CV/Resume (PDF, DOC, DOCX - Max 2MB) <span class="required">*</span></label>
+                            <div class="custom-file-input">
+                                <input type="file" id="resume" name="resume" accept=".pdf,.doc,.docx" required>
+                                <label for="resume" class="file-input-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span id="fileName">Pilih File</span>
+                                </label>
+                            </div>
+                            <span class="error-message" id="resumeError"></span>
+                        </div>
+                        <div class="input-group file-input-group">
+                            <label for="coverLetter">Unggah Surat Lamaran (Opsional - PDF, DOC, DOCX)</label>
+                             <div class="custom-file-input">
+                                <input type="file" id="coverLetter" name="coverLetter" accept=".pdf,.doc,.docx">
+                                <label for="coverLetter" class="file-input-label">
+                                    <i class="fas fa-cloud-upload-alt"></i>
+                                    <span id="coverLetterFileName">Pilih File (Opsional)</span>
+                                </label>
+                            </div>
+                            <span class="error-message" id="coverLetterError"></span>
+                        </div>
+                         <div class="input-group">
+                            <label for="portfolioLink">Link Portofolio (Opsional)</label>
+                            <input type="url" id="portfolioLink" name="portfolioLink" placeholder="https://contohportofolio.com">
+                        </div>
+                    </section>
+
+                    <section class="form-section">
+                        <h2>Informasi Tambahan</h2>
+                        <div class="input-group">
+                            <label for="additionalInfo">Mengapa Anda tertarik dengan posisi ini? (Opsional)</label>
+                            <textarea id="additionalInfo" name="additionalInfo" rows="4" placeholder="Ceritakan motivasi Anda..."></textarea>
+                        </div>
+                         <div class="input-group">
+                            <label for="expectedSalary">Ekspektasi Gaji (Opsional - IDR per bulan)</label>
+                            <input type="number" id="expectedSalary" name="expectedSalary" placeholder="Contoh: 10000000">
+                        </div>
+                    </section>
+
+                    <div class="form-submission-section">
+                        <div class="input-group consent-group">
+                            <input type="checkbox" id="dataConsent" name="dataConsent" required>
+                            <label for="dataConsent" class="consent-label">Saya menyatakan bahwa informasi yang saya berikan adalah benar dan saya setuju dengan <a href="#" target="_blank">Kebijakan Privasi ADAloker</a>.<span class="required">*</span></label>
+                            <span class="error-message" id="consentError"></span>
+                        </div>
+                        <button type="submit" id="submitApplicationButton" class="btn btn-submit-app">
+                            <i class="fas fa-paper-plane"></i> Kirim Lamaran
+                        </button>
+                        <div id="formSubmissionMessage" class="submission-message"></div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container footer-container">
+             <div class="footer-about">
+                <img src="/ADAloker_vercel/assets/images/logo_adaloker.png" alt="Logo ADAloker Kecil" class="footer-logo">
+            </div>
+            <div class="footer-links">
+                <h4>Navigasi</h4>
+                <ul>
+                    <li><a href="/cari_lowongan.html">Cari Lowongan</a></li>
+                    <li><a href="/companies_page.html">Perusahaan</a></li>
+                </ul>
+            </div>
+            <div class="footer-contact">
+                <h4>Hubungi</h4>
+                <p><i class="fas fa-envelope"></i> support@adaloker.com</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© <span id="currentYearForm"></span> ADAloker. Semua Hak Cipta Dilindungi.</p>
+        </div>
+    </footer>
+
+    <div id="successModal" class="modal">
+        <div class="modal-content">
+            <span class="close-button-modal">×</span>
+            <i class="fas fa-check-circle modal-icon"></i>
+            <h2>Lamaran Terkirim!</h2>
+            <p>Lamaran Anda untuk posisi <strong id="modalJobTitle"></strong> telah berhasil dikirim. Kami akan segera menghubungi Anda jika profil Anda sesuai.</p>
+            <button id="backToJobsButton" class="btn">Kembali ke Daftar Lowongan</button>
+        </div>
+    </div>
+
+    <script src="/assets/js/formulir_script.js"></script>
+</body>
+</html>

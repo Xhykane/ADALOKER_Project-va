@@ -1,0 +1,296 @@
+:root {
+    --primary-color: #0a2540; /* Biru Tua Gelap */
+    --secondary-color: #007bff; /* Biru Terang untuk Aksen */
+    --accent-color: #17a2b8;   /* Biru Teal untuk Aksen Lain */
+    --text-color: #e0e0e0;     /* Putih keabu-abuan untuk teks */
+    --background-color: #051a2e; /* Background lebih gelap dari primary */
+    --input-bg: #0f2c4a;
+    --input-border: #2a4a6a;
+    --error-color: #ff4d4d;
+    --success-color: #4CAF50;
+    --font-family: 'Poppins', sans-serif;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: var(--font-family);
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    overflow-x: hidden; /* Mencegah scroll horizontal jika ada elemen melebar */
+}
+
+.login-container {
+    display: flex;
+    width: 90%;
+    max-width: 1000px;
+    background-color: var(--primary-color);
+    border-radius: 15px;
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Agar border-radius terlihat pada anak elemen */
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95); }
+    to { opacity: 1; transform: scale(1); }
+}
+
+.login-box {
+    flex: 1;
+    padding: 40px 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.logo-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.logo-image {
+    max-width: 180px; /* Sesuaikan ukuran maksimal logo sesuai kebutuhan */
+    height: auto;    /* Menjaga rasio aspek gambar */
+    display: block;  /* Agar margin auto bekerja untuk centering jika diperlukan */
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.login-box h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #fff;
+}
+
+.login-box .subtitle {
+    font-size: 0.9rem;
+    color: var(--text-color);
+    text-align: center;
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    position: relative;
+}
+
+.input-group label {
+    display: block;
+    font-size: 0.85rem;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: var(--text-color);
+}
+
+.input-group input[type="email"],
+.input-group input[type="password"] {
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid var(--input-border);
+    border-radius: 8px;
+    background-color: var(--input-bg);
+    color: var(--text-color);
+    font-size: 0.9rem;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.input-group input[type="email"]:focus,
+.input-group input[type="password"]:focus {
+    outline: none;
+    border-color: var(--secondary-color);
+    box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+}
+
+.input-group input::placeholder {
+    color: #8a9eb2;
+}
+
+.error-message {
+    display: block;
+    font-size: 0.75rem;
+    color: var(--error-color);
+    margin-top: 5px;
+    min-height: 1em; /* Agar layout tidak bergeser saat error muncul/hilang */
+}
+
+.general-error-message {
+    text-align: center;
+    margin-top: 15px;
+    font-weight: 500;
+}
+
+.options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+    margin-bottom: 25px;
+}
+
+.remember-me {
+    display: flex;
+    align-items: center;
+    color: var(--text-color);
+}
+
+.remember-me input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: var(--secondary-color); /* Warna checkbox saat dicentang */
+}
+
+.forgot-password {
+    color: var(--accent-color);
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-password:hover {
+    color: var(--secondary-color);
+    text-decoration: underline;
+}
+
+.login-buttons {
+    display: flex;
+    flex-direction: column; /* Default untuk mobile */
+    gap: 15px; /* Jarak antar tombol */
+}
+
+.btn {
+    width: 100%;
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    text-align: center;
+    text-decoration: none; /* Jika menggunakan tag <a> */
+}
+
+.btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.btn:active {
+    transform: translateY(0);
+}
+
+.btn-jobseeker {
+    background-color: var(--secondary-color);
+    color: white;
+}
+
+.btn-jobseeker:hover {
+    background-color: #0069d9;
+}
+
+.btn-company {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-company:hover {
+    background-color: #138496;
+}
+
+.register-link {
+    text-align: center;
+    margin-top: 25px;
+    font-size: 0.85rem;
+}
+
+.register-link a {
+    color: var(--secondary-color);
+    font-weight: 600;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.register-link a:hover {
+    color: var(--accent-color);
+    text-decoration: underline;
+}
+
+.info-side {
+    flex: 1;
+    background: linear-gradient(135deg, var(--secondary-color) 0%, var(--accent-color) 100%);
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    text-align: center;
+}
+
+.info-side h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+}
+
+.info-side p {
+    font-size: 1rem;
+    line-height: 1.6;
+}
+
+/* Responsiveness */
+@media (min-width: 769px) { /* Terapkan flex-row untuk tombol di desktop */
+    .login-buttons {
+        flex-direction: row; /* Tombol berdampingan di desktop */
+    }
+}
+
+@media (max-width: 768px) {
+    .login-container {
+        flex-direction: column;
+        width: 95%;
+        margin: 20px auto; /* Tambahkan margin atas bawah untuk mobile */
+    }
+
+    .info-side {
+        display: none; /* Sembunyikan sisi info di mobile untuk fokus ke form */
+    }
+
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    .logo-text {
+        font-size: 2rem;
+    }
+
+    .login-box h2 {
+        font-size: 1.5rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .login-box {
+        padding: 25px 15px;
+    }
+    .input-group input[type="email"],
+    .input-group input[type="password"],
+    .btn {
+        padding: 10px 12px;
+        font-size: 0.85rem;
+    }
+    .options {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+}
