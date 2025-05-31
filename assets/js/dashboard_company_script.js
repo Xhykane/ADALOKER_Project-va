@@ -121,29 +121,11 @@ document.addEventListener("DOMContentLoaded", () => {
   const jobNameToDeleteSpan = document.getElementById("jobNameToDelete")
   let jobIdToDelete = null
 
-  function renderPostedJobs() {
-    postedJobsListContainer.innerHTML = ""
-    postedJobsCountSpan.textContent = companyData.postedJobs.length
-    document.getElementById("statTotalJobs").textContent = companyData.postedJobs.length
-    if (companyData.postedJobs.length === 0) {
-      postedJobsListContainer.innerHTML = '<p class="empty-state-dashboard">Anda belum memposting lowongan apapun.</p>'
-      return
-    }
-    companyData.postedJobs.forEach((job) => {
-      const jobItem = document.createElement("div")
-      jobItem.classList.add("job-item-company")
-      jobItem.innerHTML = `<div class="job-item-info"><h4>${job.title}</h4><p><i class="fas fa-map-marker-alt"></i> ${job.location} | <i class="fas fa-briefcase"></i> ${job.jobType} | <i class="fas fa-users"></i> ${job.applicants ? job.applicants.length : 0} Pelamar</p></div><div class="job-item-actions"><button class="btn-sm btn-view-candidates" data-job-id="${job.id}"><i class="fas fa-eye"></i> Lihat Pelamar</button><button class="btn-sm btn-edit-job" data-job-id="${job.id}"><i class="fas fa-edit"></i> Edit</button><button class="btn-sm btn-delete-job" data-job-id="${job.id}" data-job-title="${job.title}"><i class="fas fa-trash-alt"></i> Hapus</button></div>`
-      postedJobsListContainer.appendChild(jobItem)
-    })
-    document.querySelectorAll(".btn-edit-job").forEach((btn) => btn.addEventListener("click", handleEditJob))
-    document.querySelectorAll(".btn-delete-job").forEach((btn) => btn.addEventListener("click", handleDeleteJobPrompt))
-    document
-      .querySelectorAll(".btn-view-candidates")
-      .forEach((btn) => btn.addEventListener("click", handleViewCandidates))
-  }
-
+  // Tambahkan debugging dan perbaiki fungsi handlePostJobFormSubmit
   function handlePostJobFormSubmit(event) {
     event.preventDefault()
+    console.log("Form submitted!") // Debug log
+
     postJobMessage.textContent = ""
     const jobDataObj = {
       id: editJobIdInput.value || `job-${Date.now()}`,
@@ -157,35 +139,130 @@ document.addEventListener("DOMContentLoaded", () => {
         ? companyData.postedJobs.find((j) => j.id === editJobIdInput.value)?.applicants || []
         : [],
     }
-    if (
-      !jobDataObj.title ||
-      !jobDataObj.location ||
-      !jobDataObj.jobType ||
-      !jobDataObj.salaryDisplay ||
-      !jobDataObj.salaryRangeInternal ||
-      !jobDataObj.description
-    ) {
-      postJobMessage.textContent = "Semua field yang ditandai * wajib diisi."
+
+    console.log("Job data:", jobDataObj) // Debug log
+
+    // Validasi yang lebih jelas
+    if (!jobDataObj.title) {
+      postJobMessage.textContent = "Judul posisi wajib diisi."
+      postJobMessage.style.color = "var(--danger-color)"
+      console.log("Validation failed: title missing")
+      return
+    }
+    if (!jobDataObj.location) {
+      postJobMessage.textContent = "Lokasi wajib diisi."
       postJobMessage.style.color = "var(--danger-color)"
       return
     }
+    if (!jobDataObj.jobType) {
+      postJobMessage.textContent = "Jenis pekerjaan wajib dipilih."
+      postJobMessage.style.color = "var(--danger-color)"
+      console.log("Validation failed: jobType missing")
+      return
+    }
+    if (!jobDataObj.salaryDisplay) {
+      postJobMessage.textContent = "Tampilan gaji wajib diisi."
+      postJobMessage.style.color = "var(--danger-color)"
+      console.log("Validation failed: salaryDisplay missing")
+      return
+    }
+    if (!jobDataObj.salaryRangeInternal) {
+      postJobMessage.textContent = "Rentang gaji internal wajib diisi."
+      postJobMessage.style.color = "var(--danger-color)"
+      console.log("Validation failed: salaryRangeInternal missing")
+      return
+    }
+    if (!jobDataObj.description) {
+      postJobMessage.textContent = "Deskripsi pekerjaan wajib diisi."
+      postJobMessage.style.color = "var(--danger-color)"
+      console.log("Validation failed: description missing")
+      return
+    }
+
+    console.log("Validation passed, saving job...") // Debug log
+
+    // Simpan data
     if (editJobIdInput.value) {
       const jobIndex = companyData.postedJobs.findIndex((job) => job.id === editJobIdInput.value)
-      if (jobIndex > -1) companyData.postedJobs[jobIndex] = jobDataObj
+      if (jobIndex > -1) {
+        companyData.postedJobs[jobIndex] = jobDataObj
+        console.log("Job updated at index:", jobIndex)
+      }
     } else {
       companyData.postedJobs.unshift(jobDataObj)
+      console.log("New job added. Total jobs:", companyData.postedJobs.length)
     }
+
+    // Simpan ke localStorage
     localStorage.setItem("loggedInCompanyData", JSON.stringify(companyData))
+    console.log("Data saved to localStorage")
+
+    // Update UI
     renderPostedJobs()
     updateCandidateJobSelect()
+
+    // Reset form
     postJobForm.reset()
     editJobIdInput.value = ""
     formJobEditorTitle.textContent = "Pasang Lowongan Kerja Baru"
     clearJobFormButton.style.display = "none"
-    postJobMessage.textContent = `Lowongan "${jobDataObj.title}" berhasil ${editJobIdInput.value ? "diperbarui" : "diposting"}!`
+
+    // Show success message
+    const isEdit = editJobIdInput.value
+    postJobMessage.textContent = `Lowongan "${jobDataObj.title}" berhasil ${isEdit ? "diperbarui" : "diposting"}!`
     postJobMessage.style.color = "var(--success-color)"
+
+    console.log("Success message shown")
+
+    // Clear message after 3 seconds
     setTimeout(() => (postJobMessage.textContent = ""), 3000)
+
+    // Switch to posted jobs tab
     activateTab("postedJobsContent")
+    console.log("Switched to posted jobs tab")
+  }
+
+  // Pastikan event listener terpasang dengan benar
+  if (postJobForm) {
+    // Remove existing listeners first
+    postJobForm.removeEventListener("submit", handlePostJobFormSubmit)
+    // Add the listener
+    postJobForm.addEventListener("submit", handlePostJobFormSubmit)
+    console.log("Form event listener attached")
+  } else {
+    console.error("postJobForm not found!")
+  }
+
+  function renderPostedJobs() {
+    console.log("Rendering posted jobs. Total:", companyData.postedJobs.length)
+    console.log("Posted jobs data:", companyData.postedJobs)
+
+    postedJobsListContainer.innerHTML = ""
+    postedJobsCountSpan.textContent = companyData.postedJobs.length
+    document.getElementById("statTotalJobs").textContent = companyData.postedJobs.length
+
+    if (companyData.postedJobs.length === 0) {
+      postedJobsListContainer.innerHTML = '<p class="empty-state-dashboard">Anda belum memposting lowongan apapun.</p>'
+      console.log("No jobs to display")
+      return
+    }
+
+    companyData.postedJobs.forEach((job, index) => {
+      console.log(`Rendering job ${index + 1}:`, job.title)
+      const jobItem = document.createElement("div")
+      jobItem.classList.add("job-item-company")
+      jobItem.innerHTML = `<div class="job-item-info"><h4>${job.title}</h4><p><i class="fas fa-map-marker-alt"></i> ${job.location} | <i class="fas fa-briefcase"></i> ${job.jobType} | <i class="fas fa-users"></i> ${job.applicants ? job.applicants.length : 0} Pelamar</p></div><div class="job-item-actions"><button class="btn-sm btn-view-candidates" data-job-id="${job.id}"><i class="fas fa-eye"></i> Lihat Pelamar</button><button class="btn-sm btn-edit-job" data-job-id="${job.id}"><i class="fas fa-edit"></i> Edit</button><button class="btn-sm btn-delete-job" data-job-id="${job.id}" data-job-title="${job.title}"><i class="fas fa-trash-alt"></i> Hapus</button></div>`
+      postedJobsListContainer.appendChild(jobItem)
+    })
+
+    // Re-attach event listeners
+    document.querySelectorAll(".btn-edit-job").forEach((btn) => btn.addEventListener("click", handleEditJob))
+    document.querySelectorAll(".btn-delete-job").forEach((btn) => btn.addEventListener("click", handleDeleteJobPrompt))
+    document
+      .querySelectorAll(".btn-view-candidates")
+      .forEach((btn) => btn.addEventListener("click", handleViewCandidates))
+
+    console.log("Posted jobs rendered successfully")
   }
 
   function handleEditJob(event) {
